@@ -78,6 +78,13 @@
       <p>Three tightly-edited categories — no clutter, just pieces worth owning.</p>
     </div>
     <div class="categories">
+      <button class="cat-card" data-filter="Bags">
+        <span class="icon" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#B8923E" stroke-width="1.3"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M8 9V6.5A4 4 0 0 1 16 6.5V9"/></svg>
+        </span>
+        <h3>Bags</h3>
+        <span>Totes, clutches &amp; crossbody</span>
+      </button>
             <button class="cat-card" data-filter="Shoes" disabled style="opacity:0.55; cursor:not-allowed; position:relative;">
         <span style="position:absolute; top:10px; right:10px; background:var(--ink); color:#fff; font-size:10px; letter-spacing:0.08em; padding:4px 10px; border-radius:999px; text-transform:uppercase;">Coming Soon</span>
         <span class="icon" aria-hidden="true">
@@ -86,14 +93,7 @@
         <h3>Shoes</h3>
         <span>Heels, flats &amp; sandals</span>
       </button>
-      <button class="cat-card" data-filter="Bags">
-        <span class="icon" aria-hidden="true">
-          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#B8923E" stroke-width="1.3"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M8 9V6.5A4 4 0 0 1 16 6.5V9"/></svg>
-        </span>
-        <h3>Bags</h3>
-        <span>Totes, clutches &amp; crossbody</span>
-      </button>
-                 <button class="cat-card" data-filter="Accessories" disabled style="opacity:0.55; cursor:not-allowed; position:relative;">
+        <button class="cat-card" data-filter="Accessories" disabled style="opacity:0.55; cursor:not-allowed; position:relative;">
         <span style="position:absolute; top:10px; right:10px; background:var(--ink); color:#fff; font-size:10px; letter-spacing:0.08em; padding:4px 10px; border-radius:999px; text-transform:uppercase;">Coming Soon</span>
         <span class="icon" aria-hidden="true">
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#B8923E" stroke-width="1.3"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.6"/></svg>
@@ -118,8 +118,8 @@
     </div>
     <div class="filter-row" id="filterRow">
       <button class="filter-btn active" data-filter="All">All</button>
-      <button class="filter-btn" data-filter="Shoes" disabled style="opacity:0.45; cursor:not-allowed;">Shoes (Coming Soon)</button>
       <button class="filter-btn" data-filter="Bags">Bags</button>
+      <button class="filter-btn" data-filter="Shoes" disabled style="opacity:0.45; cursor:not-allowed;">Shoes (Coming Soon)</button>
       <button class="filter-btn" data-filter="Accessories" disabled style="opacity:0.45; cursor:not-allowed;">Accessories (Coming Soon)</button>
     </div>
     <div class="product-grid" id="productGrid"></div>
