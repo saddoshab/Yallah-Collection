@@ -1,6 +1,6 @@
 /* ============ CONFIG ============ */
 const WHATSAPP_NUMBER = "211912488233"; // Yallah Collections business WhatsApp number
-const CURRENCY = "SSP";
+const CURRENCY = "$";
 const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQPN9y_HjscC51UWn78BbMN26kiBKXHFQhzGsvvr0kAfOS8ADGMC-SrFCW48Dex-0-56kSNqNwXPzzm/pub?output=csv";
 
 /* Converts a pasted image reference into a usable image URL.
@@ -53,7 +53,7 @@ let visibleCount = PAGE_SIZE;
 
 /* ============ HELPERS ============ */
 function formatPrice(n) {
-  return `${CURRENCY} ${n.toLocaleString()}`;
+  return `${CURRENCY}${n.toLocaleString()}`;
 }
 function loadCart() {
   try {
