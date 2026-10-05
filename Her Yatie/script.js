@@ -96,7 +96,11 @@ function renderProducts() {
         <h3>${p.name}</h3>
         <p class="p-desc">${p.desc}</p>
         <div class="product-footer">
-          <span class="price">${formatPrice(p.price)}</span>
+         <span class="price">${p.salePrice > 0 && p.salePrice < p.price
+              ? `<s style="opacity:0.5; font-weight:400; font-size:0.85em; margin-right:6px;">${formatPrice(p.price)}</s><span style="color:var(--wine);">${formatPrice(p.salePrice)}</span>`
+              : formatPrice(p.price)
+            }
+          </span>
           <button class="add-btn" data-id="${p.id}" ${p.inStock ? '' : 'disabled style="opacity:0.5;cursor:not-allowed;"'}>${p.inStock ? 'Add to Cart' : 'Sold Out'}</button>
         </div>
       </div>
@@ -146,7 +150,8 @@ function cartCount() {
 function cartSubtotal() {
   return Object.entries(cart).reduce((sum, [id, qty]) => {
     const p = PRODUCTS.find(p => p.id === id);
-    return sum + (p ? p.price * qty : 0);
+    const unitPrice = p && p.salePrice > 0 && p.salePrice < p.price ? p.salePrice : (p ? p.price : 0);
+    return sum + unitPrice * qty;
   }, 0);
 }
 function renderCart() {
@@ -177,7 +182,7 @@ function renderCart() {
           </div>
           <button class="remove-btn" data-action="remove">Remove</button>
         </div>
-        <div class="item-total">${formatPrice(p.price * qty)}</div>
+      <div class="item-total">${formatPrice((p.salePrice > 0 && p.salePrice < p.price ? p.salePrice : p.price) * qty)}</div>
       </div>
     `;
   }).join("");
@@ -212,7 +217,8 @@ function openModal() {
   }
   const lines = Object.entries(cart).map(([id, qty]) => {
     const p = PRODUCTS.find(p => p.id === id);
-    return `${qty} &times; ${p.name} &mdash; ${formatPrice(p.price * qty)}`;
+       const unitPrice = p.salePrice > 0 && p.salePrice < p.price ? p.salePrice : p.price;
+    return `${qty} &times; ${p.name} &mdash; ${formatPrice(unitPrice * qty)}`;
   }).join("<br>");
   document.getElementById("modalSummary").innerHTML = `<strong>Order summary</strong><br>${lines}<br><br><strong>Total: ${formatPrice(cartSubtotal())}</strong>`;
   document.getElementById("modalOverlay").classList.add("open");
@@ -327,6 +333,7 @@ function loadProducts() {
               desc: String(r.desc || "").trim(),
               isNew: String(r.isNew).trim().toUpperCase() === "TRUE",
               inStock: String(r.inStock).trim().toUpperCase() !== "FALSE",
+              salePrice: parseFloat(String(r.salePrice).replace(/[^0-9.]/g, "")) || 0,
               image: resolveImageUrl(r.image)
             }));
           if (rows.length) PRODUCTS = rows;
